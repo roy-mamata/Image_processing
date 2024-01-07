@@ -7,8 +7,17 @@ using namespace cv;
 using namespace std;
 
 class BasicProcessor {
+
+private:
+
+    static BasicProcessor Instance;
+    string imagePath_;
+    BasicProcessor(const string& imagePath); 
+    
+    
 public:
-    BasicProcessor(const std::string& imagePath);
+    
+    static BasicProcessor& getInstance(const std::string& imagePath);
 
     Mat readImage() const;
 
@@ -20,8 +29,6 @@ public:
     
     Mat applyThreshold(const Mat& img) const;
 
-private:
-    string imagePath_;
 };
 
 #endif
