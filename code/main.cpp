@@ -7,7 +7,7 @@
 using namespace cv;
 
 int main() {
-    BasicProcessor object("../test.jpg");
+   BasicProcessor object=BasicProcessor::getInstance("../test.jpg");
     Mat originalImage = object.readImage();
 
     object.displayImage("Original Image", originalImage);
