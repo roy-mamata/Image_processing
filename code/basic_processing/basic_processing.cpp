@@ -3,6 +3,15 @@
 using namespace cv;
 using namespace std;
 
+    BasicProcessor BasicProcessor::Instance("");
+    BasicProcessor& BasicProcessor::getInstance(const string& imagePath){
+    
+    if (Instance.imagePath_.empty()) {
+        Instance.imagePath_ = imagePath;
+    }
+    return Instance;
+    }
+
     BasicProcessor::BasicProcessor(const std::string& imagePath) : imagePath_(imagePath) {}
 
     Mat BasicProcessor:: readImage() const {
@@ -35,5 +44,6 @@ using namespace std;
     	threshold(img, threshImg, 150, 255, THRESH_BINARY);
     	return threshImg;
     	}
+
 
 
