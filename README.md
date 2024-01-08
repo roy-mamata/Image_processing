@@ -1,4 +1,4 @@
 # Image_processing
-Basic Image Processing
+Basic Image Processing using Singleton pattern
 
 
