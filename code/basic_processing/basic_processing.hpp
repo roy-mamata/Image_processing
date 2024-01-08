@@ -10,14 +10,18 @@ class BasicProcessor {
 
 private:
 
-    static BasicProcessor Instance;
+    static BasicProcessor* Instance;
     string imagePath_;
-    BasicProcessor(const string& imagePath); 
+    BasicProcessor()=default; 
+    ~BasicProcessor() = default;
     
     
 public:
+    BasicProcessor(const BasicProcessor& obj)=delete;
     
-    static BasicProcessor& getInstance(const std::string& imagePath);
+    static BasicProcessor* getInstance();
+    
+    void setValues(string imagePath);
 
     Mat readImage() const;
 
