@@ -7,25 +7,28 @@
 using namespace cv;
 
 int main() {
-   BasicProcessor object=BasicProcessor::getInstance("../test.jpg");
-    Mat originalImage = object.readImage();
+    BasicProcessor* object=BasicProcessor::getInstance();
+   
+    object->setValues("../test.jpg");
+    
+    Mat originalImage = object->readImage();
 
-    object.displayImage("Original Image", originalImage);
+    object->displayImage("Original Image", originalImage);
 
-    Mat grayImage = object.convertToGrayscale(originalImage);
-    Mat blurredImage = object.applyGaussianBlur(grayImage);
-    Mat threshImage = object.applyThreshold(grayImage);
+    Mat grayImage = object->convertToGrayscale(originalImage);
+    Mat blurredImage = object->applyGaussianBlur(grayImage);
+    Mat threshImage = object->applyThreshold(grayImage);
 
     Mat sobelEdges = EdgeDetector::SobelEdgeDetector(blurredImage);
-    object.displayImage("Sobel XY using Sobel() function", sobelEdges);
+    object->displayImage("Sobel XY using Sobel() function", sobelEdges);
 
     Mat cannyEdges = EdgeDetector::CannyEdgeDetector(blurredImage);
-    object.displayImage("Canny edge detection", cannyEdges);
+    object->displayImage("Canny edge detection", cannyEdges);
     
     Mat contourImage = Contouring::ChainApproxSimple(originalImage,threshImage);
-    object.displayImage("Contouring", contourImage);
+    object->displayImage("Contouring", contourImage);
 
-    destroyAllWindows();
+    destroyAllWindows(); 
 
     return 0;
 }
